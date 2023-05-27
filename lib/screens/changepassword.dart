@@ -39,7 +39,17 @@ class _ChangePasswordState extends State<ChangePassword> {
                     color: Colors.grey,
                   ),
                 ),
-                SizedBox(height: 120.h),
+                SizedBox(height: 60.h),
+                MyTextField(
+                  icon: Icons.lock,
+                  hint: 'Old Password',
+                  margin: EdgeInsets.symmetric(vertical: 10.h),
+                  padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 12.w),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.sp),
+                  ),
+                ),
+                SizedBox(height: 20.h),
                 MyTextField(
                   icon: Icons.lock,
                   hint: 'Password',

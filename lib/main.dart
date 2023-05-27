@@ -44,7 +44,7 @@ class NavDrawer extends StatelessWidget {
 
   final List<Widget> _pages = [
     HomePage(),
-    Note(),
+    MockTest(),
     ChatPage(),
     WebinerPage(),
     ProfilePage(),
@@ -76,12 +76,12 @@ class NavDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.note_add, size: 25.w),
-            title: Text('Quiz', style: TextStyle(fontSize: 17.sp),),
+            title: Text('Note', style: TextStyle(fontSize: 17.sp),),
             trailing: Icon(Icons.arrow_forward_ios, size: 25.w),
             onTap: () => {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MockTest()),
+                MaterialPageRoute(builder: (context) => Note()),
               )
             },
           ),

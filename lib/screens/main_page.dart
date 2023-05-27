@@ -8,6 +8,7 @@ import 'package:saffety/screens/home.dart';
 import 'package:saffety/screens/profile.dart';
 
 import '../main.dart';
+import 'Mock_test.dart';
 import 'Webiner.dart';
 import 'chat.dart';
 import 'note.dart';
@@ -25,7 +26,7 @@ class _Home_PageState extends State<Home_Page> {
   // List of pages to display in the bottom navigation bar
   final List<Widget> _pages = [
     HomePage(),
-    Note(),
+    MockTest(),
     ChatPage(),
     WebinerPage(),
     ProfilePage(),
@@ -72,8 +73,8 @@ class _Home_PageState extends State<Home_Page> {
             labelStyle: TextStyle(color: Colors.white,fontSize: 11.0.sp),
           ),
           CurvedNavigationBarItem(
-            child: Icon(Icons.note_add,size: 30.0.h,color: Colors.white,),
-            label: 'Note',
+            child: Icon(Icons.quiz,size: 30.0.h,color: Colors.white,),
+            label: 'Quiz',
             labelStyle: TextStyle(color: Colors.white,fontSize: 11.0.sp),
           ),
           CurvedNavigationBarItem(

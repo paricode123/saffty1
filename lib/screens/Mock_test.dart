@@ -18,7 +18,7 @@ class _MockTestState extends State<MockTest> {
         elevation: 0,
         centerTitle: true,
         title: Text(
-          "Mock Test Details",
+          "Quiz Details",
           style: TextStyle(
             fontSize: 16.h,
             color: Colors.black,

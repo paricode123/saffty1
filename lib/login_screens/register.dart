@@ -62,7 +62,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 40.h),
+              SizedBox(height: 30.h),
               Text(
                 'REGISTER NOW',
                 style: TextStyle(
@@ -105,6 +105,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                   hintText: 'Country',
                   prefixIcon: Icon(Icons.location_on),
+                ),
+              ),
+              SizedBox(height: 20.h),
+              TextFormField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.r),
+                  ),
+                  hintText: 'Phone No.',
+                  prefixIcon: Icon(Icons.phone),
                 ),
               ),
               SizedBox(height: 20.h),
