@@ -9,6 +9,7 @@ import 'package:saffety/screens/job.dart';
 import 'package:saffety/screens/main_page.dart';
 import 'package:saffety/screens/note.dart';
 import 'package:saffety/screens/profile.dart';
+import 'package:saffety/screens/quizquestion.dart';
 import 'package:saffety/screens/splash.dart';
 import 'package:saffety/screens/team.dart';
 
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(390, 844),
+      designSize: const Size(370, 800),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context,child){
@@ -37,9 +38,12 @@ class MyApp extends StatelessWidget {
 }
 
 class NavDrawer extends StatelessWidget {
-  final VoidCallback onWebinarTapped; // Add this line
+  final VoidCallback onWebinarTapped;
+  final VoidCallback onMockTestTapped;
+  final VoidCallback onProfilePageTapped;
 
-  NavDrawer({required this.onWebinarTapped});
+  NavDrawer({required this.onWebinarTapped, required this.onMockTestTapped,required this.onProfilePageTapped});
+
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
@@ -65,6 +69,7 @@ class NavDrawer extends StatelessWidget {
               color: Color(0xFFFF57100),
             ),
           ),
+          SizedBox(height: 10.h,),
           ListTile(
             leading: Icon(Icons.home, size: 25.w),
             title: Text('Home', style: TextStyle(fontSize: 17.sp),),
@@ -75,15 +80,16 @@ class NavDrawer extends StatelessWidget {
             )},
           ),
           ListTile(
-            leading: Icon(Icons.note_add, size: 25.w),
-            title: Text('Note', style: TextStyle(fontSize: 17.sp),),
+            leading: Icon(Icons.book_online, size: 25.w),
+            title: Text('Exam', style: TextStyle(fontSize: 17.sp),),
             trailing: Icon(Icons.arrow_forward_ios, size: 25.w),
-            onTap: () => {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Note()),
-              )
-            },
+            // onTap: () => {
+            //   Navigator.push(
+            //     context,
+            //     MaterialPageRoute(builder: (context) => MockTest()),
+            //   )
+            // },
+            onTap: onMockTestTapped,
           ),
           ListTile(
             leading: Icon(Icons.computer, size: 25.w),
@@ -103,7 +109,7 @@ class NavDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.computer_sharp, size: 25.w),
+            leading: Icon(Icons.work, size: 25.w),
             title: Text('Jobs', style: TextStyle(fontSize: 17.sp),),
             trailing: Icon(Icons.arrow_forward_ios, size: 25.w),
             onTap: () => {
@@ -128,12 +134,13 @@ class NavDrawer extends StatelessWidget {
             leading: Icon(Icons.person, size: 25.w),
             title: Text('Profile', style: TextStyle(fontSize: 17.sp),),
             trailing: Icon(Icons.arrow_forward_ios, size: 25.w),
-            onTap: () => {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Home_Page()),
-              )
-            },
+            // onTap: () => {
+            //   Navigator.push(
+            //     context,
+            //     MaterialPageRoute(builder: (context) => Home_Page()),
+            //   )
+            // },
+            onTap: onProfilePageTapped,
           ),
           ListTile(
             leading: Icon(Icons.logout_rounded, size: 25.w),
@@ -143,21 +150,21 @@ class NavDrawer extends StatelessWidget {
           ),
           DrawerHeader(
             decoration: BoxDecoration(
-              color: Color(0xFFFF57100),
+              color: Colors.white,
             ),
             child: Column(
               children: [
                 Center(
                   child: Text(
                     'Version 1.0.0',
-                    style: TextStyle(color: Colors.white, fontSize: 14.sp),
+                    style: TextStyle(color: Colors.black, fontSize: 14.sp),
                   ),
                 ),
                 SizedBox(height: 15.h,),
                 Center(
                   child: Text(
                     'Developed by SYSCOGEN',
-                    style: TextStyle(color: Colors.white, fontSize: 14.sp ),
+                    style: TextStyle(color: Colors.black, fontSize: 14.sp ),
                   ),
                 ),
               ],
