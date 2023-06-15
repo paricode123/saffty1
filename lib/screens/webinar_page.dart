@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PageWeb extends StatefulWidget {
   const PageWeb({Key? key}) : super(key: key);
@@ -9,10 +10,25 @@ class PageWeb extends StatefulWidget {
 }
 
 class _PageWebState extends State<PageWeb> {
+  void _openWebinarLink() async {
+    const url = 'https://meet.google.com/hou-nwqj-oui';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          automaticallyImplyLeading: true,
+          iconTheme: IconThemeData(color: Colors.black),
+          elevation: 0,
+        ),
         body: Padding(
           padding: EdgeInsets.all(12.0),
           child: Column(
@@ -29,7 +45,7 @@ class _PageWebState extends State<PageWeb> {
               ),
               SizedBox(height: 60.h),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 35.0.w),
+                padding: EdgeInsets.symmetric(horizontal: 10.0.w),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -77,21 +93,15 @@ class _PageWebState extends State<PageWeb> {
                 ),
               ),
               SizedBox(height: 25.h),
-              Text(
-                'https://us02web.zoom.us/j/88283623030?',
-                style: TextStyle(
-                  fontSize: 14.h,
-                  color: Colors.grey,
-                  decoration: TextDecoration.underline,
-                ),
-              ),
-              SizedBox(height: 10.h),
-              Text(
-                'pwd=bjYyWEpicWN2ZKRXZG16KOJEcmRTUTO9',
-                style: TextStyle(
-                  fontSize: 14.h,
-                  color: Colors.grey,
-                  decoration: TextDecoration.underline,
+              GestureDetector(
+                onTap: _openWebinarLink,
+                child: Text(
+                  'https://meet.google.com/hou-nwqj-oui',
+                  style: TextStyle(
+                    fontSize: 14.h,
+                    color: Colors.blue,
+                    decoration: TextDecoration.underline,
+                  ),
                 ),
               ),
               SizedBox(height: 20.h),
@@ -115,5 +125,6 @@ class _PageWebState extends State<PageWeb> {
           ),
         ),
       ),
-    );  }
+    );
+  }
 }

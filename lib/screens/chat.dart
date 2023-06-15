@@ -1,9 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-
-import '../main.dart';
-
+import 'package:file_picker/file_picker.dart';
 class ChatPage extends StatefulWidget {
   @override
   _ChatPageState createState() => _ChatPageState();
@@ -12,6 +12,20 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   TextEditingController _controller = TextEditingController();
   List<ChatMessage> _messages = [];
+
+  void getImageFromDocument() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(type: FileType.image);
+
+    if (result != null && result.files.isNotEmpty) {
+      setState(() {
+        _messages.add(ChatMessage(
+          messageContent: result.files.first.path!,
+          messageType: MessageType.document,
+          time: DateTime.now(),
+        ));
+      });
+    }
+  }
 
   Widget buildRow(String avatarText, String secondaryText) {
     return Container(
@@ -125,7 +139,7 @@ class _ChatPageState extends State<ChatPage> {
     if (image != null) {
       setState(() {
         _messages.add(ChatMessage(
-            messageContent: image.toString(),
+            messageContent: image.path,
             messageType: MessageType.image,
             time: DateTime.now()));
       });
@@ -135,10 +149,9 @@ class _ChatPageState extends State<ChatPage> {
   Future getImageFromGallery() async {
     var image = await ImagePicker().getImage(source: ImageSource.gallery);
     if (image != null) {
-      // Check if image is not null
       setState(() {
         _messages.add(ChatMessage(
-            messageContent: image.toString(),
+            messageContent: image.path,
             messageType: MessageType.image,
             time: DateTime.now()));
       });
@@ -234,7 +247,90 @@ class _ChatPageState extends State<ChatPage> {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      showModalBottomSheet(
+                        context: context,
+                        builder: (BuildContext builder) {
+                          return Container(
+                            height: 200.h,
+                            child: Column(
+                              children: <Widget>[
+                                SizedBox(height: 10.h,),
+                                Row(
+                                  children: <Widget>[
+                                    IconButton(
+                                      icon: Icon(Icons.photo_library,size: 30.sp,color: Colors.green,),
+                                      onPressed: () {
+                                        getImageFromGallery();
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                    SizedBox(width: 10.w,),
+                                    TextButton(
+                                      onPressed: () {
+                                        getImageFromGallery();
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text("Gallery", style: TextStyle(fontSize: 15.sp,color: Colors.black)),
+                                    ),
+                                  ],
+                                ),
+                                Divider(
+                                  height: 6.h,
+                                  color: Colors.grey,
+                                ),
+                                Row(
+                                  children: <Widget>[
+                                    IconButton(
+                                      icon: Icon(Icons.camera_alt,size: 30.sp,color: Colors.purple,),
+                                      onPressed: () {
+                                        getImageFromCamera();
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                    SizedBox(width: 10.w,),
+                                    TextButton(
+                                      onPressed: () {
+                                        getImageFromCamera();
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text("Camera", style: TextStyle(fontSize: 15.sp,color: Colors.black)),
+                                    ),
+                                  ],
+                                ),
+                                Divider(
+                                  height: 6.h,
+                                  color: Colors.grey,
+                                ),
+                                Row(
+                                  children: <Widget>[
+                                    IconButton(
+                                      icon: Icon(Icons.document_scanner_outlined,size: 30.sp,color: Colors.blue,),
+                                      onPressed: () {
+                                        getImageFromDocument();
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                    SizedBox(width: 10.w,),
+                                    TextButton(
+                                      onPressed: () {
+                                        getImageFromDocument();
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text("Documents", style: TextStyle(fontSize: 15.sp,color: Colors.black)),
+                                    ),
+                                  ],
+                                ),
+                                Divider(
+                                  height: 6.h,
+                                  color: Colors.grey,
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    },
                     icon: Icon(Icons.attachment_outlined),
                   ),
                   Padding(
@@ -292,7 +388,7 @@ class ChatMessage {
       required this.time});
 }
 
-enum MessageType { text, image }
+enum MessageType { text, image, document }
 
 class ChatBubble extends StatelessWidget {
   final ChatMessage message;
@@ -320,10 +416,17 @@ class ChatBubble extends StatelessWidget {
                   Text(
                     message.messageContent,
                     style: TextStyle(fontSize: 16.sp),
-                  )
-                else
+                  ),
+                if (message.messageType == MessageType.image)
                   Container(
-                    child: Text(message.messageContent),
+                    child: Image.file(File(message.messageContent)),
+                  ),
+                if (message.messageType == MessageType.document)
+                  Container(
+                    child: Text(
+                      message.messageContent,
+                      style: TextStyle(fontSize: 16.sp),
+                    ),
                   ),
                 Container(
                   margin: EdgeInsets.only(top: 5.sp),
@@ -342,38 +445,4 @@ class ChatBubble extends StatelessWidget {
       ),
     );
   }
-  // Widget buildRow(String avatarText, String secondaryText) {
-  //   return Container(
-  //     margin: EdgeInsets.only(bottom: 10.0),
-  //     child: Row(
-  //       children: [
-  //         Container(
-  //           width: 50.0,
-  //           height: 50.0,
-  //           decoration: BoxDecoration(
-  //             shape: BoxShape.circle,
-  //             color: Colors.grey,
-  //           ),
-  //           child: Center(
-  //             child: Text(
-  //               avatarText,
-  //               style: TextStyle(
-  //                 fontSize: 16.0,
-  //                 fontWeight: FontWeight.bold,
-  //               ),
-  //             ),
-  //           ),
-  //         ),
-  //         SizedBox(width: 10.0),
-  //         Text(
-  //           secondaryText,
-  //           style: TextStyle(
-  //             fontSize: 14.0,
-  //             color: Colors.grey[600],
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
 }

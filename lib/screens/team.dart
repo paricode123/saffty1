@@ -19,6 +19,7 @@ class _TeamPageState extends State<TeamPage> {
         title: Text("Team Member", style: TextStyle(fontSize: 16.sp,
             color: Colors.black,
             fontWeight: FontWeight.bold),),
+        iconTheme: IconThemeData(color: Colors.black),
       ),
       body: SingleChildScrollView(
         child: Center(

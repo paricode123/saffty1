@@ -19,6 +19,7 @@ class _ContactPageState extends State<ContactPage> {
             elevation: 0,
             backgroundColor: Colors.white,
             centerTitle: true,
+            iconTheme: IconThemeData(color: Colors.black),
             title: Text(
               'Contact Us',
               textAlign: TextAlign.center,

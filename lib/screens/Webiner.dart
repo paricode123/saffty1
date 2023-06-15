@@ -106,7 +106,7 @@ class _WebinerPageState extends State<WebinerPage> {
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 12.sp,
+                                      fontSize: 11.sp,
                                       color: Colors.black,
                                     ),
                                   ),
@@ -117,7 +117,7 @@ class _WebinerPageState extends State<WebinerPage> {
                                     'During this free webinar, we will discuss\n the types of eye hazards and injuries\n community experienced at work and why\n the steps to creating a successful safety.',
                                     textAlign: TextAlign.start,
                                     style: TextStyle(
-                                      fontSize: 10.sp,
+                                      fontSize: 9.sp,
                                       color: Colors.black,
                                     ),
                                   ),

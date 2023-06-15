@@ -11,7 +11,6 @@ import '../main.dart';
 import 'Mock_test.dart';
 import 'Webiner.dart';
 import 'chat.dart';
-import 'note.dart';
 
 class Home_Page extends StatefulWidget {
   Home_Page({Key? key}) : super(key: key);
@@ -23,7 +22,6 @@ class Home_Page extends StatefulWidget {
 class _Home_PageState extends State<Home_Page> {
   int _currentIndex = 0;
 
-  // List of pages to display in the bottom navigation bar
   final List<Widget> _pages = [
     HomePage(),
     MockTest(),
@@ -38,13 +36,22 @@ class _Home_PageState extends State<Home_Page> {
       drawer: NavDrawer(
         onWebinarTapped: () {
           setState(() {
-            _currentIndex = 3; // Set the index of the WebinerPage in the bottomNavigationBar
+            _currentIndex = 3;
           });
-          Navigator.pop(context); // Close the side drawer
-        },
+          Navigator.pop(context);
+        }, onMockTestTapped: () {
+          setState(() {
+        _currentIndex = 1;
+      });
+      Navigator.pop(context);}, onProfilePageTapped: () {
+        setState(() {
+          _currentIndex = 4;
+        });
+        Navigator.pop(context);
+      },
       ),      appBar: AppBar(
         backgroundColor: Color(0xFF0058AC),
-        title: Text("The Certificate Safely Professional",style: TextStyle(fontSize: 16.sp),),
+        title: Text("The Certified Safety Professional",style: TextStyle(fontSize: 16.sp),),
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(50.0.h),
           child: Container(
