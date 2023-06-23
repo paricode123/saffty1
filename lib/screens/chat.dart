@@ -334,7 +334,7 @@ class _ChatPageState extends State<ChatPage> {
                     icon: Icon(Icons.attachment_outlined),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8.w),
+                    padding: EdgeInsets.symmetric(horizontal: 7.5.w),
                     child: Container(
                       width: 40.w,
                       height: 40.h,
