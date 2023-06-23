@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     final double _height = MediaQuery.of(context).size.height;
     final double _width = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: NavDrawer(onWebinarTapped: () {  },),
+      drawer: NavDrawer(onWebinarTapped: () {  }, onMockTestTapped: () {  }, onProfilePageTapped: () {  },),
       body: SingleChildScrollView(
         child: Container(
           width: screenWidth.w,
@@ -356,7 +356,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                             Row(
                                 children: <Widget>[
                                   Container(
-                                      width: 130.w,
+                                      width: 120.w,
                                       height: 210.h,
                                       child: Image.asset('assets/images/webiner.jpg',fit: BoxFit.cover,)
                                   ),
@@ -372,7 +372,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 12.sp,
+                                              fontSize: 11.sp,
                                               color: Colors.black,
                                             ),
                                           ),
@@ -383,7 +383,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                                             'During this free webinar, we will discuss\n the types of eye hazards and injuries\n community experienced at work and why\n the steps to creating a successful safety.',
                                             textAlign: TextAlign.start,
                                             style: TextStyle(
-                                              fontSize: 10.sp,
+                                              fontSize: 8.sp,
                                               color: Colors.black,
                                             ),
                                           ),

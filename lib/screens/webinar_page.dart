@@ -13,6 +13,10 @@ class _PageWebState extends State<PageWeb> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.blue.shade400,
+          title: Text('Webinar Details'),
+        ),
         body: Padding(
           padding: EdgeInsets.all(12.0),
           child: Column(
