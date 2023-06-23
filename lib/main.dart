@@ -148,6 +148,7 @@ class NavDrawer extends StatelessWidget {
             trailing: Icon(Icons.arrow_forward_ios, size: 25.w),
             onTap: () => {},
           ),
+          SizedBox(height: 10.h,),
           DrawerHeader(
             decoration: BoxDecoration(
               color: Colors.white,
